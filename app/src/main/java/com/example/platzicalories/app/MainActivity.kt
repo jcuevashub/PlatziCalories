@@ -1,4 +1,4 @@
-package com.example.platzicalories
+package com.example.platzicalories.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.platzicalories.ui.theme.PlatziCaloriesTheme
+import androidx.navigation.compose.rememberNavController
+import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
+import com.example.platzicalories.core.navigation.NavigationRoot
+import com.example.platzicalories.presentation.onbording.welcome_screen.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +22,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PlatziCaloriesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val navController = rememberNavController()
+                NavigationRoot(
+                    navHostController = navController
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PlatziCaloriesTheme {
-        Greeting("Android")
     }
 }

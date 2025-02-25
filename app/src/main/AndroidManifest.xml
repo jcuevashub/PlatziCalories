@@ -13,7 +13,12 @@
         android:theme="@style/Theme.PlatziCalories"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.onbording.components.ActionButton"
+            android:exported="false"
+            android:label="@string/title_activity_action_button"
+            android:theme="@style/Theme.PlatziCalories" />
+        <activity
+            android:name=".app.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PlatziCalories">
