@@ -29,6 +29,7 @@ class AgeViewModel : ViewModel() {
             this.age = filterOutDigits(age)
         }
     }
+
     fun onNextClick() {
         viewModelScope.launch {
             age.toIntOrNull() ?: kotlin.run {
