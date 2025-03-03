@@ -6,12 +6,18 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.platzicalories.core.domain.model.GoalType
+import com.example.platzicalories.core.domain.preferences.Preferences
 import com.example.platzicalories.core.domain.util.UiEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GoalViewModel : ViewModel() {
+@HiltViewModel
+class GoalViewModel @Inject constructor(
+    private val preferences: Preferences
+) : ViewModel() {
 
     var selectedGoal by mutableStateOf<GoalType>(
         GoalType.KeepWeight
@@ -27,6 +33,7 @@ class GoalViewModel : ViewModel() {
 
     fun onNextClick() {
         viewModelScope.launch {
+            preferences.saveGoalType(selectedGoal)
             _uiEvent.send(UiEvent.Success)
         }
     }

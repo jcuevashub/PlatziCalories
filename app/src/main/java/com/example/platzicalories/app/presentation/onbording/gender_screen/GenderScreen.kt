@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.platzicalories.R
 import com.example.platzicalories.app.presentation.onbording.components.ActionButton
 import com.example.platzicalories.app.presentation.onbording.components.SelectableButton
@@ -30,7 +30,7 @@ import com.example.platzicalories.core.domain.util.UiEvent
 @Composable
 fun GenderScreen(
     onNextClick: () -> Unit,
-    genderViewModel: GenderViewModel = viewModel()
+    genderViewModel: GenderViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     LaunchedEffect(key1 = true) {

@@ -9,10 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
 
 @Composable
-fun TrackerOverviewScreen() {
+fun TrackerOverviewScreen(
+    trackerOverviewViewModel: TrackerOverviewViewModel = hiltViewModel()
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),

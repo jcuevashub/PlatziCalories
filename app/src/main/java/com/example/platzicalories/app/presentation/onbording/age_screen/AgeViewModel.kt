@@ -6,17 +6,21 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.platzicalories.R
+import com.example.platzicalories.core.domain.preferences.Preferences
 import com.example.platzicalories.core.domain.use_case.FilterOutDigits
 import com.example.platzicalories.core.domain.util.UiEvent
 import com.example.platzicalories.core.domain.util.UiText
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class AgeViewModel : ViewModel() {
-
-    private val filterOutDigits = FilterOutDigits()
+@HiltViewModel
+class AgeViewModel @Inject constructor(
+    private val preferences: Preferences,
+    private val filterOutDigits: FilterOutDigits
+) : ViewModel() {
 
     var age by mutableStateOf("20")
         private set
@@ -32,7 +36,7 @@ class AgeViewModel : ViewModel() {
 
     fun onNextClick() {
         viewModelScope.launch {
-            age.toIntOrNull() ?: kotlin.run {
+          val ageNumber =  age.toIntOrNull() ?: kotlin.run {
                 _uiEvent.send(
                     UiEvent.ShowSnackbar(
                         UiText.StringResource(R.string.error_age_cant_be_empty)
@@ -40,6 +44,7 @@ class AgeViewModel : ViewModel() {
                 )
                 return@launch
             }
+            preferences.saveAge(ageNumber)
             _uiEvent.send(UiEvent.Success)
         }
     }

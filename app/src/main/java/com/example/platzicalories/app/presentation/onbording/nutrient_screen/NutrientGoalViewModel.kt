@@ -6,16 +6,21 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.platzicalories.app.domain.use_case.ValidateNutrients
+import com.example.platzicalories.core.domain.preferences.Preferences
 import com.example.platzicalories.core.domain.use_case.FilterOutDigits
 import com.example.platzicalories.core.domain.util.UiEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class NutrientGoalViewModel : ViewModel() {
-    private val filterOutDigits = FilterOutDigits()
-    private val validateNutrients = ValidateNutrients()
+@HiltViewModel
+class NutrientGoalViewModel @Inject constructor(
+    private val preferences: Preferences,
+    private val filterOutDigits: FilterOutDigits,
+//    private val validateNutrients: ValidateNutrients
+) : ViewModel() {
 
     var state by mutableStateOf(NutrientGoalState())
         private set
@@ -44,23 +49,8 @@ class NutrientGoalViewModel : ViewModel() {
             }
 
             is NutrientGoalEvent.OnNextClick -> {
-                val result = validateNutrients(
-                    carbsRatioText = state.carbsRatio,
-                    proteinRatioText = state.proteinRatio,
-                    fatRatioText = state.fatRatio
-                )
-                when (result) {
-                    is ValidateNutrients.Result.Success -> {
-                        viewModelScope.launch {
-                            _uiEvent.send(UiEvent.Success)
-                        }
-                    }
-
-                    is ValidateNutrients.Result.Error -> {
-                        viewModelScope.launch {
-                            _uiEvent.send(UiEvent.ShowSnackbar(result.message))
-                        }
-                    }
+                viewModelScope.launch {
+                    _uiEvent.send(UiEvent.Success)
                 }
             }
         }

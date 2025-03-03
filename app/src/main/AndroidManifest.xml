@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".app.PlatziCaloriesApp"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -12,11 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlatziCalories"
         tools:targetApi="31">
-        <activity
-            android:name=".presentation.onbording.components.ActionButton"
-            android:exported="false"
-            android:label="@string/title_activity_action_button"
-            android:theme="@style/Theme.PlatziCalories" />
         <activity
             android:name=".app.MainActivity"
             android:exported="true"

@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.platzicalories.R
 import com.example.platzicalories.app.ui.theme.LocalSpacing
@@ -32,7 +33,7 @@ import com.example.platzicalories.core.domain.util.UiEvent
 @Composable
 fun GoalScreen(
     onNextClick: () -> Unit,
-    goalViewModel: GoalViewModel = viewModel()
+    goalViewModel: GoalViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     LaunchedEffect(key1 = true) {
