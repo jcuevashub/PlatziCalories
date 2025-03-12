@@ -8,15 +8,15 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.platzicalories.app.presentation.onbording.activity_level_screen.ActivityLevelScreen
-import com.example.platzicalories.app.presentation.onbording.age_screen.AgeScreen
-import com.example.platzicalories.app.presentation.onbording.gender_screen.GenderScreen
-import com.example.platzicalories.app.presentation.onbording.goal_screen.GoalScreen
-import com.example.platzicalories.app.presentation.onbording.height_screen.HeightScreen
-import com.example.platzicalories.app.presentation.onbording.nutrient_screen.NutrientGoalScreen
-import com.example.platzicalories.app.presentation.onbording.weight_screen.WeightScreen
-import com.example.platzicalories.app.presentation.onbording.welcome_screen.WelcomeScreen
-import com.example.platzicalories.app.presentation.tracker_overview.TrackerOverviewScreen
+import com.example.platzicalories.presentation.onbording.activity_level_screen.ActivityLevelScreen
+import com.example.platzicalories.presentation.onbording.age_screen.AgeScreen
+import com.example.platzicalories.presentation.onbording.gender_screen.GenderScreen
+import com.example.platzicalories.presentation.onbording.goal_screen.GoalScreen
+import com.example.platzicalories.presentation.onbording.height_screen.HeightScreen
+import com.example.platzicalories.presentation.onbording.nutrient_screen.NutrientGoalScreen
+import com.example.platzicalories.presentation.onbording.weight_screen.WeightScreen
+import com.example.platzicalories.presentation.onbording.welcome_screen.WelcomeScreen
+import com.example.platzicalories.presentation.tracker_overview.TrackerOverviewScreen
 
 @Composable
 fun NavigationRoot(

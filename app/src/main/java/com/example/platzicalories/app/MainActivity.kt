@@ -6,20 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
-import com.example.platzicalories.core.navigation.NavigationRoot
-import com.example.platzicalories.app.presentation.onbording.welcome_screen.WelcomeScreen
 import com.example.platzicalories.core.domain.preferences.Preferences
+import com.example.platzicalories.core.navigation.NavigationRoot
 import dagger.hilt.android.AndroidEntryPoint
 import jakarta.inject.Inject
 
