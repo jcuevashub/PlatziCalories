@@ -16,6 +16,7 @@ import com.example.platzicalories.presentation.onbording.height_screen.HeightScr
 import com.example.platzicalories.presentation.onbording.nutrient_screen.NutrientGoalScreen
 import com.example.platzicalories.presentation.onbording.weight_screen.WeightScreen
 import com.example.platzicalories.presentation.onbording.welcome_screen.WelcomeScreen
+import com.example.platzicalories.presentation.search.SearchScreen
 import com.example.platzicalories.presentation.tracker_overview.TrackerOverviewScreen
 
 @Composable
@@ -95,7 +96,21 @@ fun NavigationRoot(
                 )
             }
             composable<TrackerOverviewScreenRoute> {
-                TrackerOverviewScreen()
+                TrackerOverviewScreen(
+                    onNavigateToSearch = {
+                        navHostController.navigate(SearchScreenRoute)
+                    }
+                )
+            }
+            composable<SearchScreenRoute> {
+                SearchScreen(
+                    snackbarHostState = snackbarHostState,
+                    mealName = "Meal Name",
+                    dayOfMonth = 1,
+                    month = 1,
+                    year = 2022,
+                    onNavigateUp = {}
+                )
             }
         }
     }

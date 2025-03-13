@@ -28,3 +28,6 @@ object NutrientGoalScreenRoute
 
 @Serializable
 object TrackerOverviewScreenRoute
+
+@Serializable
+object SearchScreenRoute
