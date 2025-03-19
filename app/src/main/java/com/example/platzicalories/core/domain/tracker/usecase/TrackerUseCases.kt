@@ -1,4 +1,4 @@
-package com.example.platzicalories.domain.tracker.usecase
+package com.example.platzicalories.core.domain.tracker.usecase
 
 data class TrackerUseCases(
     val searchFoodUseCase: SearchFoodUseCase

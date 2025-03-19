@@ -2,13 +2,13 @@ package com.example.platzicalories.presentation.tracker_overview.model
 
 import androidx.annotation.DrawableRes
 import com.example.platzicalories.R
-import com.example.platzicalories.domain.tracker.model.MealType
+import com.example.platzicalories.core.domain.tracker.model.MealType
 import com.example.platzicalories.core.domain.util.UiText
 
 data class Meal(
     val name: UiText,
     @DrawableRes val drawableRes: Int,
-    val mealType: MealType,
+    val mealType: com.example.platzicalories.core.domain.tracker.model.MealType,
     val carbs: Int = 0,
     val protein: Int = 0,
     val fat: Int = 0,
@@ -20,21 +20,21 @@ val defaultMeals = listOf(
     Meal(
         name = UiText.StringResource(R.string.breakfast),
         drawableRes = R.drawable.breakfast_02,
-        mealType = MealType.Breakfast
+        mealType = com.example.platzicalories.core.domain.tracker.model.MealType.Breakfast
     ),
     Meal(
         name = UiText.StringResource(R.string.lunch),
         drawableRes = R.drawable.lunch_02,
-        mealType = MealType.Lunch
+        mealType = com.example.platzicalories.core.domain.tracker.model.MealType.Lunch
     ),
     Meal(
         name = UiText.StringResource(R.string.dinner),
         drawableRes = R.drawable.dinner_02,
-        mealType = MealType.Dinner
+        mealType = com.example.platzicalories.core.domain.tracker.model.MealType.Dinner
     ),
     Meal(
         name = UiText.StringResource(R.string.snacks),
         drawableRes = R.drawable.snack_02,
-        mealType = MealType.Snack
+        mealType = com.example.platzicalories.core.domain.tracker.model.MealType.Snack
     ),
 )

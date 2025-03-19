@@ -1,9 +1,10 @@
-package com.example.platzicalories.data.remote.repository
+package com.example.platzicalories.core.data.remote.repository
 
-import com.example.platzicalories.data.remote.api.OpenFoodApi
-import com.example.platzicalories.data.remote.mapper.toTrackableFood
-import com.example.platzicalories.domain.tracker.model.TrackableFood
-import com.example.platzicalories.domain.tracker.repository.TrackerRepository
+import com.example.platzicalories.core.data.remote.api.OpenFoodApi
+import com.example.platzicalories.core.data.remote.mapper.toTrackableFood
+import com.example.platzicalories.core.domain.tracker.model.TrackableFood
+import com.example.platzicalories.core.domain.tracker.repository.TrackerRepository
+
 
 class TrackerRepositoryImpl(
     private val api: OpenFoodApi
@@ -23,11 +24,17 @@ class TrackerRepositoryImpl(
                 searchDto.products
                     .filter {
                         val calculatedCalories =
-                            it.nutriments.carbohydrates100g * 4f + it.nutriments.proteins100g * 4f + it.nutriments.fat100g * 9f
-
+                            (it.nutriments.carbohydrates100g?.times(4f) ?: 0.0) +
+                                    (it.nutriments.proteins100g?.times(4f) ?: 0.0) +
+                                    (it.nutriments.fat100g?.times(9f) ?: 0.0)
                         val lowerBound = calculatedCalories * 0.99f
                         val upperBound = calculatedCalories * 1.01f
-                        it.nutriments.energyKcal100g in (lowerBound..upperBound)
+                        if (it.nutriments.energyKcal100g == null) {
+                            0.0 in (lowerBound..upperBound)
+                        } else {
+                            it.nutriments.energyKcal100g in (lowerBound..upperBound)
+                        }
+
                     }
                     .mapNotNull { it.toTrackableFood() }
             )
@@ -36,5 +43,4 @@ class TrackerRepositoryImpl(
             Result.failure(e)
         }
     }
-
 }

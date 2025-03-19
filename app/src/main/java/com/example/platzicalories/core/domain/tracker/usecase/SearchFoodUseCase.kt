@@ -1,7 +1,7 @@
-package com.example.platzicalories.domain.tracker.usecase
+package com.example.platzicalories.core.domain.tracker.usecase
 
-import com.example.platzicalories.domain.tracker.model.TrackableFood
-import com.example.platzicalories.domain.tracker.repository.TrackerRepository
+import com.example.platzicalories.core.domain.tracker.model.TrackableFood
+import com.example.platzicalories.core.domain.tracker.repository.TrackerRepository
 
 class SearchFoodUseCase(
     private val trackerRepository: TrackerRepository

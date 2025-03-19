@@ -1,15 +1,14 @@
-package com.example.platzicalories.data.di
+package com.example.platzicalories.core.data.di
 
-import com.example.platzicalories.data.remote.api.OpenFoodApi
-import com.example.platzicalories.data.remote.repository.TrackerRepositoryImpl
-import com.example.platzicalories.domain.tracker.repository.TrackerRepository
+import com.example.platzicalories.core.data.remote.api.OpenFoodApi
+import com.example.platzicalories.core.data.remote.repository.TrackerRepositoryImpl
+import com.example.platzicalories.core.domain.tracker.repository.TrackerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create

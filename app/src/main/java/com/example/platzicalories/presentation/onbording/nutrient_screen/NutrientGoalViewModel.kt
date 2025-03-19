@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.platzicalories.domain.use_case.ValidateNutrients
 import com.example.platzicalories.core.domain.preferences.Preferences
 import com.example.platzicalories.core.domain.use_case.FilterOutDigits
 import com.example.platzicalories.core.domain.util.UiEvent

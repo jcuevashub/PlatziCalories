@@ -1,8 +1,8 @@
-package com.example.platzicalories.domain.tracker.di
+package com.example.platzicalories.core.domain.tracker.di
 
-import com.example.platzicalories.domain.tracker.repository.TrackerRepository
-import com.example.platzicalories.domain.tracker.usecase.SearchFoodUseCase
-import com.example.platzicalories.domain.tracker.usecase.TrackerUseCases
+import com.example.platzicalories.core.domain.tracker.repository.TrackerRepository
+import com.example.platzicalories.core.domain.tracker.usecase.SearchFoodUseCase
+import com.example.platzicalories.core.domain.tracker.usecase.TrackerUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

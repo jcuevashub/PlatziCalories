@@ -1,6 +1,6 @@
-package com.example.platzicalories.data.remote.api
+package com.example.platzicalories.core.data.remote.api
 
-import com.example.platzicalories.data.remote.dto.SearchDto
+import com.example.platzicalories.core.data.remote.dto.SearchDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

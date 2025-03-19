@@ -1,4 +1,4 @@
-package com.example.platzicalories.domain.use_case
+package com.example.platzicalories.core.domain.use_case
 
 import com.example.platzicalories.R
 import com.example.platzicalories.core.domain.util.UiText

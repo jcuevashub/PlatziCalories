@@ -1,4 +1,4 @@
-package com.example.platzicalories.domain.tracker.model
+package com.example.platzicalories.core.domain.tracker.model
 
 sealed class MealType(val name: String) {
     data object Breakfast: MealType("breakfast")
@@ -9,11 +9,11 @@ sealed class MealType(val name: String) {
     companion object {
         fun fromString(name: String): MealType {
             return when (name.lowercase()) {
-                "breakfast" -> Breakfast
-                "lunch" -> Lunch
-                "dinner" -> Dinner
-                "snack" -> Snack
-                else -> Breakfast
+                "breakfast" -> MealType.Breakfast
+                "lunch" -> MealType.Lunch
+                "dinner" -> MealType.Dinner
+                "snack" -> MealType.Snack
+                else -> MealType.Breakfast
             }
         }
     }
