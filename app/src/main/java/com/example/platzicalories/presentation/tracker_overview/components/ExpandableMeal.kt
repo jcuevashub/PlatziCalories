@@ -26,7 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.platzicalories.R
-import com.example.platzicalories.core.domain.tracker.model.MealType
+import com.example.platzicalories.app.domain.tracker.model.MealType
 import com.example.platzicalories.app.ui.theme.LocalSpacing
 import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
 import com.example.platzicalories.core.domain.util.UiText
@@ -124,7 +124,7 @@ private fun ExpandableMealPreview() {
                 name = UiText.StringResource(R.string.breakfast),
                 drawableRes = R.drawable.breakfast_02,
                 calories = 500,
-                mealType = com.example.platzicalories.core.domain.tracker.model.MealType.Breakfast,
+                mealType = MealType.Breakfast,
                 carbs = 50,
                 protein = 20,
                 fat = 10

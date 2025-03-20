@@ -37,7 +37,6 @@ import coil3.compose.rememberAsyncImagePainter
 import com.example.platzicalories.R
 import com.example.platzicalories.app.ui.theme.LocalSpacing
 import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
-import com.example.platzicalories.core.domain.tracker.model.TrackableFood
 import com.example.platzicalories.presentation.search.model.TrackableFoodUiState
 import com.example.platzicalories.presentation.tracker_overview.components.NutrientInfo
 import androidx.compose.foundation.border
@@ -48,6 +47,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.ui.text.input.KeyboardType
+import com.example.platzicalories.app.domain.tracker.model.TrackableFood
 
 @Composable
 fun TrackableFoodItem(
@@ -157,16 +158,17 @@ fun TrackableFoodItem(
                     .fillMaxWidth()
                     .padding(spacing.spaceMedium),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = CenterVertically
             ) {
                 Row {
                     BasicTextField(
-                        value = "",
+                        value = trackableFoodUiState.amount,
                         onValueChange = onAmountChange,
                         keyboardOptions = KeyboardOptions(
                             imeAction = if (trackableFoodUiState.amount.isNotBlank()) {
                                 ImeAction.Done
-                            } else ImeAction.Default
+                            } else ImeAction.Default,
+                            keyboardType = KeyboardType.Number
                         ),
                         keyboardActions = KeyboardActions(
                             onDone = {
