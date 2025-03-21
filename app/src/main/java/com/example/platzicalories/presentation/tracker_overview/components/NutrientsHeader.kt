@@ -24,14 +24,16 @@ import com.example.platzicalories.app.ui.theme.LocalSpacing
 import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
 import com.example.platzicalories.app.ui.theme.ProteinColor
 import com.example.platzicalories.app.ui.theme.tertiaryDark
+import com.example.platzicalories.presentation.tracker_overview.TrackerOverviewState
 
 @Composable
 fun NutrientsHeader(
+    state: TrackerOverviewState,
     modifier: Modifier = Modifier
 ) {
     val spacing = LocalSpacing.current
     val animatedCalorieCount = animateIntAsState(
-        targetValue = 2000
+        targetValue = state.totalCalories
     )
     Column (
         modifier = modifier
@@ -48,22 +50,22 @@ fun NutrientsHeader(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             NutrientBarInfo(
-                value = 100,
-                goal = 200,
+                value = state.totalCarbs,
+                goal = state.carbsGoal,
                 name = stringResource(id = R.string.carbs),
                 color = tertiaryDark,
                 modifier = Modifier.size(90.dp)
             )
             NutrientBarInfo(
-                value = 50,
-                goal = 200,
+                value = state.totalProtein,
+                goal = state.proteinGoal,
                 name = stringResource(id = R.string.protein),
                 color = ProteinColor,
                 modifier = Modifier.size(90.dp)
             )
             NutrientBarInfo(
-                value = 200,
-                goal = 300,
+                value = state.totalFat,
+                goal = state.fatGoal,
                 name = stringResource(id = R.string.fat),
                 color = FatColor,
                 modifier = Modifier.size(90.dp)
@@ -76,7 +78,7 @@ fun NutrientsHeader(
         ) {
             UnitDisplay(
                 amount = animatedCalorieCount.value,
-                unit = "kcal",
+                unit = stringResource(R.string.kcal),
                 amountColor = MaterialTheme.colorScheme.onPrimary,
                 amountTextSize = 40.sp,
                 unitColor = MaterialTheme.colorScheme.onPrimary
@@ -88,7 +90,7 @@ fun NutrientsHeader(
                     color = MaterialTheme.colorScheme.onPrimary
                 )
                 UnitDisplay(
-                    amount = 2510,
+                    amount = state.caloriesGoal,
                     unit = stringResource(id = R.string.kcal),
                     amountColor = MaterialTheme.colorScheme.onPrimary,
                     amountTextSize = 40.sp,
@@ -98,23 +100,15 @@ fun NutrientsHeader(
         }
         Spacer(modifier = Modifier.height(spacing.spaceSmall))
         NutrientsBar(
-            carbs = 100,
-            protein = 200,
-            fat = 100,
-            calories = 2000,
-            calorieGoal = 3500,
+            carbs = state.totalCarbs,
+            protein = state.totalProtein,
+            fat = state.totalFat,
+            calories = state.totalCalories,
+            calorieGoal = state.caloriesGoal,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(30.dp)
         )
 
-    }
-}
-
-@Preview (showSystemUi = true)
-@Composable
-private fun NutrientsHeaderPreview() {
-    PlatziCaloriesTheme {
-        NutrientsHeader()
     }
 }

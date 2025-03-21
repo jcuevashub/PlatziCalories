@@ -11,15 +11,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.platzicalories.R
 import com.example.platzicalories.app.ui.theme.LocalSpacing
-import com.example.platzicalories.app.ui.theme.PlatziCaloriesTheme
+import com.example.platzicalories.presentation.tracker_overview.components.AddButton
 import com.example.platzicalories.presentation.tracker_overview.components.DaySelector
 import com.example.platzicalories.presentation.tracker_overview.components.ExpandableMeal
 import com.example.platzicalories.presentation.tracker_overview.components.NutrientsHeader
-import com.example.platzicalories.presentation.tracker_overview.model.defaultMeals
-import java.time.LocalDate
 
 @Composable
 fun TrackerOverviewScreen(
@@ -28,20 +27,35 @@ fun TrackerOverviewScreen(
 ) {
     val spacing = LocalSpacing.current
     val context = LocalContext.current
+    val state = trackerOverviewViewModel.state
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize()
+    LazyColumn (
+        modifier = Modifier
+            .fillMaxSize()
             .padding(bottom = spacing.spaceMedium)
     ) {
         item {
-            NutrientsHeader()
+            NutrientsHeader(state = state)
+            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+            DaySelector(
+                date = state.date,
+                onPreviousDayClick = {
+
+                },
+                onNextDayClick = {
+
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.spaceMedium)
+            )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
         }
-        items(defaultMeals){ meal ->
+        items(state.meals) { meal ->
             ExpandableMeal(
                 meal = meal,
                 onToggleClick = {
-                    onNavigateToSearch()
+                    trackerOverviewViewModel.onEvent(TrackerOverviewEvent.OnToggleMealClick(meal))
                 },
                 content = {
                     Column(
@@ -49,43 +63,26 @@ fun TrackerOverviewScreen(
                             .fillMaxWidth()
                             .padding(horizontal = spacing.spaceSmall)
                     ) {
-
+                        val foods = state.trackedFoods.filter {
+                            it.mealType == meal.mealType
+                        }
+                        foods.forEach { food ->
+                            Spacer(modifier = Modifier.height(spacing.spaceMedium))
+                        }
+                        AddButton(
+                            text = stringResource(
+                                id = R.string.add_meal,
+                                meal.name.asString(context)
+                            ),
+                            onClick = {
+                                onNavigateToSearch()
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        )
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
             )
         }
-    }
-
-}
-
-@Composable
-private fun TrackerOverviewScreenText() {
-    val spacing = LocalSpacing.current
-    val context = LocalContext.current
-
-    LazyColumn(
-        modifier = Modifier.fillMaxSize()
-            .padding(bottom = spacing.spaceMedium)
-    ) {
-        item {
-            NutrientsHeader()
-            Spacer(modifier = Modifier.height(spacing.spaceMedium))
-            DaySelector(
-                date = LocalDate.now(),
-                onPreviousDayClick = {},
-                onNextDayClick = {},
-                modifier = Modifier.fillMaxWidth()
-                    .padding(horizontal = spacing.spaceMedium)
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun TrackerOverviewScreenPreview() {
-    PlatziCaloriesTheme {
-        TrackerOverviewScreenText()
     }
 }

@@ -2,6 +2,8 @@ package com.example.platzicalories.app.domain.tracker.di
 
 import com.example.platzicalories.core.domain.preferences.Preferences
 import com.example.platzicalories.app.domain.tracker.repository.TrackerRepository
+import com.example.platzicalories.app.domain.tracker.use_case.CalculateMealNutrientsUseCase
+import com.example.platzicalories.app.domain.tracker.use_case.GetFoodsForDateUseCase
 import com.example.platzicalories.app.domain.tracker.use_case.SearchFoodUseCase
 import com.example.platzicalories.app.domain.tracker.use_case.TrackFoodUseCase
 import com.example.platzicalories.app.domain.tracker.use_case.TrackerUseCases
@@ -24,6 +26,8 @@ object TrackerDomainModule {
         return TrackerUseCases(
             searchFoodUseCase = SearchFoodUseCase(trackerRepository),
             trackFoodUseCase = TrackFoodUseCase(trackerRepository),
+            getFoodsForDateUseCase = GetFoodsForDateUseCase(trackerRepository),
+            calculateMealNutrientsUseCase = CalculateMealNutrientsUseCase(preferences)
         )
     }
 }
